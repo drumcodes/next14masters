@@ -6,7 +6,7 @@ const products: ProductItem[] = [
 		id: "224ac120-2405-4334-b252-41df9d5fe008",
 		category: "crystal",
 		name: "Whiskey Glass",
-		price: 21.37,
+		price: 2137,
 		coverImage: {
 			height: 500,
 			width: 320,
@@ -18,7 +18,7 @@ const products: ProductItem[] = [
 		id: "224ac120-2405-4334-b252-41df9d5fe008",
 		category: "crystal wine glass",
 		name: "Wine Glass",
-		price: 12.99,
+		price: 1299,
 		coverImage: {
 			height: 100,
 			width: 320,
@@ -30,7 +30,7 @@ const products: ProductItem[] = [
 		id: "224ac120-2405-4334-b252-41df9d5fe008",
 		category: "crystal cognac glass",
 		name: "Cognac Glass",
-		price: 9.99,
+		price: 999,
 		coverImage: {
 			height: 100,
 			width: 320,
@@ -42,7 +42,7 @@ const products: ProductItem[] = [
 		id: "224ac120-2405-4334-b252-41df9d5fe008",
 		category: "crystal champagne glass",
 		name: "Champagne Glass",
-		price: 11.99,
+		price: 1199,
 		coverImage: {
 			height: 100,
 			width: 320,
