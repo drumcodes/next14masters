@@ -4,8 +4,8 @@ import { ProductList } from "@/ui/views/products/ProductList";
 const products: ProductItem[] = [
 	{
 		id: "224ac120-2405-4334-b252-41df9d5fe008",
-		category: "crystal",
-		name: "Whiskey Glass",
+		category: "crystal glass",
+		name: "Whiskey",
 		price: 2137,
 		coverImage: {
 			height: 500,
@@ -16,8 +16,8 @@ const products: ProductItem[] = [
 	},
 	{
 		id: "224ac120-2405-4334-b252-41df9d5fe008",
-		category: "crystal wine glass",
-		name: "Wine Glass",
+		category: "crystal glass",
+		name: "Wine",
 		price: 1299,
 		coverImage: {
 			height: 100,
@@ -28,8 +28,8 @@ const products: ProductItem[] = [
 	},
 	{
 		id: "224ac120-2405-4334-b252-41df9d5fe008",
-		category: "crystal cognac glass",
-		name: "Cognac Glass",
+		category: "crystal glass",
+		name: "Cognac",
 		price: 999,
 		coverImage: {
 			height: 100,
@@ -40,8 +40,8 @@ const products: ProductItem[] = [
 	},
 	{
 		id: "224ac120-2405-4334-b252-41df9d5fe008",
-		category: "crystal champagne glass",
-		name: "Champagne Glass",
+		category: "crystal glass",
+		name: "Champagne",
 		price: 1199,
 		coverImage: {
 			height: 100,
