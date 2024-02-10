@@ -17,7 +17,7 @@ export const ProductDescription = ({
 				<p className="text-sm text-gray-500"> {category}</p>
 			</div>
 			<p className="text-sm font-medium text-gray-900">
-				{formatPrice(price/100)}
+				{formatPrice(price / 100)}
 			</p>
 		</div>
 	);

@@ -5,7 +5,12 @@ type ProductCoverImageProps = {
 	width: number;
 };
 
-export const ProductCoverImage = ({ src, alt, height, width }: ProductCoverImageProps) => {
+export const ProductCoverImage = ({
+	src,
+	alt,
+	height,
+	width,
+}: ProductCoverImageProps) => {
 	return (
 		<div className="aspect-auto overflow-hidden rounded-md border bg-slate-50 hover:bg-slate-100">
 			<img
