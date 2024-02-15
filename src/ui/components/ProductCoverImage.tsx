@@ -12,7 +12,7 @@ export const ProductCoverImage = ({
 	width,
 }: ProductCoverImageProps) => {
 	return (
-		<div className="aspect-auto overflow-hidden rounded-md border bg-slate-50 hover:bg-slate-100">
+		<div className="aspect-auto overflow-hidden rounded-xl border bg-slate-50 hover:bg-slate-100">
 			<img
 				width={width}
 				height={height}
