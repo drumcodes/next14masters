@@ -23,7 +23,14 @@ export default function RootLayout({
 							<ActiveLink href={"/"}>Homepage </ActiveLink>
 						</li>
 						<li>
-							<ActiveLink href={"/products"}>Products </ActiveLink>
+							<ActiveLink href={"/products"}>
+								Dynamic Products
+							</ActiveLink>
+						</li>
+						<li>
+							<ActiveLink href={"/static-products"}>
+								Static Products
+							</ActiveLink>
 						</li>
 					</ul>
 				</nav>
@@ -31,7 +38,7 @@ export default function RootLayout({
 					{children}
 				</section>
 				<footer>
-					<nav>
+					<nav className="mb-5">
 						<ul className="mt-2 flex justify-center space-x-4">
 							<li>
 								<ActiveLink href={"/regulations"}>
@@ -45,7 +52,7 @@ export default function RootLayout({
 							</li>
 						</ul>
 					</nav>
-					<p className="text-center text-gray-500">
+					<p className="mb-5 text-center text-gray-500">
 						© DrumCodes - NEXT.js Masters 2024
 					</p>
 				</footer>

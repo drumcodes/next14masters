@@ -5,14 +5,16 @@ import { ProductDescription } from "./ProductListItemDescription";
 
 type ProductListItemProps = {
 	product: ProductItem;
+	idx: number;
 };
 
-export const ProductListItem = ({
+export const StaticProductListItem = ({
 	product,
+	idx,
 }: ProductListItemProps) => {
 	return (
 		<li>
-			<Link href={`/product/${product.id}`}>
+			<Link href={`/static-product/${idx}`}>
 				<article>
 					<ProductCoverImage {...product.coverImage} />
 					<ProductDescription product={product} />
