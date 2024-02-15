@@ -21,7 +21,7 @@ export const ActiveLink = ({
 				"text-blue-400 hover:text-blue-600",
 				isActive && "underline",
 			)}
-			href={href}
+			href={{ href: href }}
 		>
 			{children}
 		</Link>
