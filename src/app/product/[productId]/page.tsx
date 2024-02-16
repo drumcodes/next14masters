@@ -1,8 +1,13 @@
 import { Suspense } from "react";
-import { getProductById } from "@/api/products";
+import { getProductById, getProductsList } from "@/api/products";
 import { ProductCoverImage } from "@/ui/components/ProductCoverImage";
 import { ProductDescription } from "@/ui/components/ProductListItemDescription";
 import { SuggestedProductsList } from "@/ui/components/SuggestedProductsList";
+
+export const generateStaticParams = async () => {
+	const products = await getProductsList();
+	return products.map((product) => ({ productId: product.id }));
+};
 
 export default async function SingleProductPage({
 	params,
