@@ -1,4 +1,4 @@
-import { StaticProductListItem } from "@/ui/components/StatucProducListItem";
+import { StaticProductListItem } from "@/ui/components/StaticProducListItem";
 import { type ProductItem } from "@/ui/types";
 
 export const StaticProductList = ({

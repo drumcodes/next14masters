@@ -4,6 +4,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { type ReactNode } from "react";
+import { type Route } from "next";
 
 export const ActiveLink = ({
 	href,
@@ -21,7 +22,7 @@ export const ActiveLink = ({
 				"text-blue-400 hover:text-blue-600",
 				isActive && "underline",
 			)}
-			href={href}
+			href={href as Route}
 		>
 			{children}
 		</Link>
