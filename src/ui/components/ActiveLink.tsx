@@ -15,6 +15,7 @@ export const ActiveLink = ({
 }) => {
 	const pathname = usePathname();
 	const isActive = pathname === href;
+	const ariaCurrent = isActive ? { "aria-current": isActive } : {};
 
 	return (
 		<Link
@@ -23,6 +24,7 @@ export const ActiveLink = ({
 				isActive && "underline",
 			)}
 			href={href as Route}
+			{...ariaCurrent}
 		>
 			{children}
 		</Link>

@@ -1,6 +1,6 @@
 import { ProductCoverImage } from "@/ui/components/ProductCoverImage";
 import { ProductDescription } from "@/ui/components/ProductListItemDescription";
-import { staticProducts } from "@/app/products/staticProducts";
+import { staticProducts } from "@/app/static-products/staticProducts";
 
 export default async function SingleStaticProductPage({
 	params,
