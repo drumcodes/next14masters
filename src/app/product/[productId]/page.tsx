@@ -24,7 +24,7 @@ export default async function SingleProductPage({
 				<ProductDescription product={product} />
 			</article>
 			<aside>
-				<Suspense fallback={"Loading..."}>
+				<Suspense fallback={<div aria-busy>{"Loading..."}</div>}>
 					<SuggestedProductsList />
 				</Suspense>
 			</aside>
