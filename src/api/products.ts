@@ -27,9 +27,21 @@ const productResponseItemToProductItem = (
 	};
 };
 
-export const getProductsList = async () => {
+export const getProductsList = async (
+	page?: string,
+	limit?: number,
+) => {
+	const defaultLimit = 20;
+	const baseProductsUrl =
+		"https://naszsklep-api.vercel.app/api/products";
+
+	const safeLimit = limit ?? defaultLimit;
+	const safePage = Number.isNaN(Number(page ?? 1))
+		? 1
+		: Number(page ?? 1);
+
 	const res = await fetch(
-		"https://naszsklep-api.vercel.app/api/products",
+		`${baseProductsUrl}?take=${safeLimit}&offset=${(safePage - 1) * safeLimit}`,
 	);
 	const productsResponse =
 		(await res.json()) as ProductResponseItem[];
