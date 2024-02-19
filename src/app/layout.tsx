@@ -20,7 +20,7 @@ export default function RootLayout({
 				<nav>
 					<ul className="mt-2 flex justify-center space-x-4">
 						<li>
-							<ActiveLink href={"/"}>Homepage </ActiveLink>
+							<ActiveLink href={"/"}>Home </ActiveLink>
 						</li>
 						<li>
 							<ActiveLink href={"/products" as Route}>All</ActiveLink>
