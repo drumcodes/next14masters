@@ -15,14 +15,14 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	return §(
+	return (
 		<html lang="pl">
 			<body className={inter.className}>
 				<section className="mx-auto max-w-md p-12 sm:max-w-2xl sm:py-16 md:max-w-4xl lg:max-w-7xl">
 					<NavBar />
 					{children}
 				</section>
-				<footer>	
+				<footer>
 					<Footer />
 				</footer>
 			</body>
