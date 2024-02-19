@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ActiveLink } from "@/ui/components/ActiveLink";
@@ -23,7 +23,7 @@ export default function RootLayout({
 							<ActiveLink href={"/"}>Homepage </ActiveLink>
 						</li>
 						<li>
-							<ActiveLink href={"/products"}>All</ActiveLink>
+							<ActiveLink href={"/products" as Route}>All</ActiveLink>
 						</li>
 						<li>
 							<ActiveLink href={"/static-products"}>

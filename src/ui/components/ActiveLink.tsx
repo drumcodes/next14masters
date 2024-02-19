@@ -1,27 +1,35 @@
 "use client";
 
-import Link from "next/link";
-import clsx from "clsx";
+import { type UrlObject } from "url";
+import Link, { type LinkProps } from "next/link";
+import clsx, { type ClassValue } from "clsx";
 import { usePathname } from "next/navigation";
 import { type ReactNode } from "react";
 import { type Route } from "next";
+import { isLinkActive } from "../utils";
 
-export const ActiveLink = ({
-	href,
-	children,
-}: {
+type ActiveLinkProps<Href> = {
 	href: string;
 	children: ReactNode;
-}) => {
-	const pathname = usePathname();
-	const isActive = pathname === href;
-	const ariaCurrent = isActive ? { "aria-current": isActive } : {};
+	className?: ClassValue;
+	activeClassName?: ClassValue;
+} & LinkProps<Href>;
 
+export const ActiveLink = ({
+	className,
+	activeClassName,
+	href,
+	children,
+}: ActiveLinkProps<UrlObject>) => {
+	const pathname = usePathname();
+
+	const isActive = isLinkActive(pathname, href);
+	const ariaCurrent = isActive ? { "aria-current": isActive } : {};
 	return (
 		<Link
 			className={clsx(
-				"text-blue-400 hover:text-blue-600",
-				isActive && "underline",
+				className ?? "text-blue-400 hover:text-blue-600",
+				(isActive && activeClassName) ?? "underline",
 			)}
 			href={href as Route}
 			{...ariaCurrent}
