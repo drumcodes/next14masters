@@ -1,4 +1,5 @@
 "use client";
+import { type Route } from "next";
 import { ActiveLink } from "./ActiveLink";
 
 export function ProductsPagination({
@@ -14,7 +15,10 @@ export function ProductsPagination({
 			className="mx-auto flex justify-center"
 		>
 			{Array.from({ length: count / (limit ?? 20) }, (_, index) => (
-				<ActiveLink key={index} href={`/products/${index + 1}`}>
+				<ActiveLink
+					key={index}
+					href={`/products/${index + 1}` as Route}
+				>
 					<p className="mx-1 py-2">{index + 1}</p>
 				</ActiveLink>
 			))}

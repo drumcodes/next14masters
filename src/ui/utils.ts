@@ -4,3 +4,10 @@ export const formatPrice = (amount: number) => {
 		currency: "USD",
 	}).format(amount);
 };
+
+export function isLinkActive(
+	pathName: string,
+	href: string,
+): boolean {
+	return pathName === href;
+}
