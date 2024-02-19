@@ -24,6 +24,7 @@ const productResponseItemToProductItem = (
 			src: productResponse.image,
 			alt: productResponse.title,
 		},
+		description: productResponse.description,
 	};
 };
 
