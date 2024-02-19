@@ -23,11 +23,6 @@ export default async function SingleProductPage({
 				<ProductCoverImage {...product.coverImage} />
 				<ProductDescription product={product} />
 			</article>
-			<aside>
-				<Suspense fallback={<div aria-busy>{"Loading..."}</div>}>
-					<SuggestedProductsList />
-				</Suspense>
-			</aside>
 		</div>
 	);
 }
