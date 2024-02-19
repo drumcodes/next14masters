@@ -7,4 +7,5 @@ export type ProductItem = {
 		alt: string;
 		src: string;
 	};
+	description: string
 };

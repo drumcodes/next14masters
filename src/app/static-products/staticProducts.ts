@@ -10,6 +10,7 @@ export const staticProducts: ProductItem[] = [
 			src: "/whiskey1.jpeg",
 			alt: "Whiskey Glass",
 		},
+		description: "Classic Whiskey Glass",
 	},
 	{
 		id: "224ac120-2405-4334-b252-41df9d5fe008",
@@ -20,6 +21,7 @@ export const staticProducts: ProductItem[] = [
 			src: "/wino1.jpeg",
 			alt: "Wine Glass",
 		},
+		description: "Classic Wine Glass",
 	},
 	{
 		id: "224ac120-2405-4334-b252-41df9d5fe008",
@@ -30,6 +32,7 @@ export const staticProducts: ProductItem[] = [
 			src: "/koniak1.jpeg",
 			alt: "Cognac Glass",
 		},
+		description: "Classic Cognac Glass",
 	},
 	{
 		id: "224ac120-2405-4334-b252-41df9d5fe008",
@@ -40,5 +43,6 @@ export const staticProducts: ProductItem[] = [
 			src: "/szampan1.jpeg",
 			alt: "Champagne Glass",
 		},
+		description: "Classic Champagne Glass",
 	},
 ];
