@@ -3,6 +3,16 @@ import { getProductsList } from "@/api/products";
 import { ProductsPagination } from "@/ui/components/ProductsPagination";
 import { ProductList } from "@/ui/views/products/ProductList";
 
+const productsCount = 100;
+const productsLimit = 20;
+
+export const generateStaticParams = async () => {
+	return Array.from(
+		{ length: productsCount / (productsLimit ?? 20) },
+		(_, index) => ({ page: [`${index + 1}`] }),
+	);
+};
+
 export default async function ProductsPage({
 	params,
 }: {
@@ -21,7 +31,7 @@ export default async function ProductsPage({
 	return (
 		<>
 			<ProductList products={products} />
-			<ProductsPagination count={100} />
+			<ProductsPagination count={productsCount} />
 		</>
 	);
 }
