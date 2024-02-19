@@ -18,8 +18,6 @@ export default async function ProductsPage({
 }: {
 	params: { page?: string };
 }) {
-	const products = await getProductsList(params.page);
-
 	const isPagePositiveNumber =
 		!Number.isNaN(params.page ?? 1) && Number(params.page ?? 1) > 0;
 
@@ -28,6 +26,8 @@ export default async function ProductsPage({
 	if (shouldRedirectToBase) {
 		redirect("/products");
 	}
+	const products = await getProductsList(params.page);
+
 	return (
 		<>
 			<ProductList products={products} />

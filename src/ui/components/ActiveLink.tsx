@@ -1,30 +1,31 @@
 "use client";
 
-import { type UrlObject } from "url";
 import Link, { type LinkProps } from "next/link";
 import clsx, { type ClassValue } from "clsx";
 import { usePathname } from "next/navigation";
 import { type ReactNode } from "react";
 import { type Route } from "next";
-import { isLinkActive } from "../utils";
 
-type ActiveLinkProps<Href> = {
+type ActiveLinkProps<T extends string> = {
 	href: string;
 	children: ReactNode;
 	className?: ClassValue;
 	activeClassName?: ClassValue;
-} & LinkProps<Href>;
+	exact?: boolean;
+} & Omit<LinkProps<T>, "href">;
 
-export const ActiveLink = ({
+export const ActiveLink = <T extends string>({
 	className,
 	activeClassName,
 	href,
 	children,
-}: ActiveLinkProps<UrlObject>) => {
+	exact,
+}: ActiveLinkProps<T>) => {
 	const pathname = usePathname();
 
-	const isActive = isLinkActive(pathname, href);
-	const ariaCurrent = isActive ? { "aria-current": isActive } : {};
+	const isActive = exact
+		? pathname === href
+		: pathname.startsWith(href);
 	return (
 		<Link
 			className={clsx(
@@ -32,7 +33,7 @@ export const ActiveLink = ({
 				(isActive && activeClassName) ?? "underline",
 			)}
 			href={href as Route}
-			{...ariaCurrent}
+			aria-current={isActive ? "page" : undefined}
 		>
 			{children}
 		</Link>
