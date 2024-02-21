@@ -20,9 +20,6 @@ dependencies:
   clsx:
     specifier: ^2.1.0
     version: 2.1.0
-  lucide:
-    specifier: ^0.335.0
-    version: 0.335.0
   lucide-react:
     specifier: ^0.335.0
     version: 0.335.0(react@18.2.0)
@@ -2459,10 +2456,6 @@ packages:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
-    dev: false
-
-  /lucide@0.335.0:
-    resolution: {integrity: sha512-Y+Zp+u6r2JCqkMO2A8tCMgGspzMA5BCjAsPBqgMDzP4KdQtFVEzQuLsG8ttRmvrSV4bFQ6TJoJtG8o2JQ64GCA==}
     dev: false
 
   /markdown-extensions@2.0.0:
