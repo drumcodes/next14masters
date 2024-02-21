@@ -1,5 +1,5 @@
-import { ProductCoverImage } from "@/ui/components/ProductCoverImage";
-import { ProductDescription } from "@/ui/components/ProductListItemDescription";
+import { ProductListCover } from "@/ui/components/page/product/ProductListCover";
+import { ProductDescription } from "@/ui/components/page/product/ProductDescription";
 import { staticProducts } from "@/app/static-products/staticProducts";
 
 export default async function SingleStaticProductPage({
@@ -11,7 +11,7 @@ export default async function SingleStaticProductPage({
 	return (
 		<div>
 			<article className="mb-14 max-w-xs">
-				<ProductCoverImage {...product.coverImage} />
+				<ProductListCover {...product.coverImage} />
 				<ProductDescription product={product} />
 			</article>
 		</div>

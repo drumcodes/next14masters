@@ -1,7 +1,7 @@
 import { type Metadata } from "next";
 import { getProductById, getProductsList } from "@/api/products";
-import { ProductCoverImage } from "@/ui/components/ProductCoverImage";
-import { ProductDescription } from "@/ui/components/ProductListItemDescription";
+import { ProductDescription } from "@/ui/components/page/product/ProductDescription";
+import { ProductDetailCover } from "@/ui/components/page/product/ProductDetailCover";
 
 export const generateStaticParams = async () => {
 	const products = await getProductsList();
@@ -33,11 +33,13 @@ export default async function SingleProductPage({
 }) {
 	const product = await getProductById(params.productId);
 	return (
-		<div>
-			<article className="mb-14 max-w-xs">
-				<ProductCoverImage {...product.coverImage} />
+		<>
+			<div className="flex">
+				<article className="mb-14 max-w-md text-xl">
+					<ProductDetailCover {...product.coverImage} />
+				</article>
 				<ProductDescription product={product} />
-			</article>
-		</div>
+			</div>
+		</>
 	);
 }

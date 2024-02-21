@@ -1,4 +1,4 @@
-import { ProductListItem } from "@/ui/components/ProducListItem";
+import { ProductListItem } from "@/ui/components/page/product/ProductListItem";
 import { type ProductItem } from "@/ui/types";
 
 export const ProductList = ({

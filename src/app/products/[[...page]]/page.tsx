@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getProductsList } from "@/api/products";
-import { ProductsPagination } from "@/ui/components/ProductsPagination";
-import { ProductList } from "@/ui/views/products/ProductList";
+import { ProductsPagination } from "@/ui/components/navigation/Pagination";
+import { ProductList } from "@/ui/components/page/products/ProductList";
 
 const productsCount = 100;
 const productsLimit = 20;

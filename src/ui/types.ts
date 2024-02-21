@@ -7,5 +7,11 @@ export type ProductItem = {
 		alt: string;
 		src: string;
 	};
-	description: string
+	description: string;
+};
+
+export type NavBarLink = {
+	label: string;
+	href: string;
+	exact?: boolean;
 };
