@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { type ProductItem } from "../types";
-import { ProductCoverImage } from "./ProductCoverImage";
-import { ProductDescription } from "./ProductListItemDescription";
+import { type ProductItem } from "../../../types";
+import { ProductListCover } from "../product/ProductListCover";
+import { ProductDescription } from "../product/ProductDescription";
 
 type ProductListItemProps = {
 	product: ProductItem;
@@ -16,7 +16,7 @@ export const StaticProductListItem = ({
 		<li>
 			<Link href={`/static-product/${idx}`}>
 				<article>
-					<ProductCoverImage {...product.coverImage} />
+					<ProductListCover {...product.coverImage} />
 					<ProductDescription product={product} />
 				</article>
 			</Link>

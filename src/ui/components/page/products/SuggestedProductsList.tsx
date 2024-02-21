@@ -1,4 +1,4 @@
-import { ProductList } from "../views/products/ProductList";
+import { ProductList } from "./ProductList";
 import { getProductsList } from "@/api/products";
 
 // const sleep = (ms: number) =>

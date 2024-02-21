@@ -3,7 +3,7 @@ type ProductCoverImageProps = {
 	alt: string;
 };
 
-export const ProductCoverImage = ({
+export const ProductListCover = ({
 	src,
 	alt,
 }: ProductCoverImageProps) => {

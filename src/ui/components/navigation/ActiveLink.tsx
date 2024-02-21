@@ -29,7 +29,7 @@ export const ActiveLink = <T extends string>({
 	return (
 		<Link
 			className={clsx(
-				className ?? "text-blue-400 hover:text-blue-600",
+				className ?? "text-gray-800",
 				(isActive && activeClassName) ?? "underline",
 			)}
 			href={href as Route}
