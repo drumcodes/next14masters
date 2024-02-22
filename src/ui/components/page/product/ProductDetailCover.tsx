@@ -1,5 +1,5 @@
 type ProductDetailCoverProps = {
-	src: string;
+	src?: string;
 	alt: string;
 };
 

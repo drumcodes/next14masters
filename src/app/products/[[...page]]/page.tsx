@@ -26,7 +26,7 @@ export default async function ProductsPage({
 	if (shouldRedirectToBase) {
 		redirect("/products");
 	}
-	const products = await getProductsList(params.page);
+	const products = await getProductsList();
 
 	return (
 		<>

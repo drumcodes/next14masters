@@ -1,5 +1,5 @@
 type ProductCoverImageProps = {
-	src: string;
+	src?: string;
 	alt: string;
 };
 

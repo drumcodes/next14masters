@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { ProductListCover } from "@/ui/components/page/product/ProductListCover";
 import { ProductDescription } from "@/ui/components/page/product/ProductDescription";
 import { staticProducts } from "@/app/static-products/staticProducts";
@@ -8,6 +9,9 @@ export default async function SingleStaticProductPage({
 	params: { productIdx: number };
 }) {
 	const product = staticProducts[params.productIdx];
+	if (!product) {
+		return notFound();
+	}
 	return (
 		<div>
 			<article className="mb-14 max-w-xs">

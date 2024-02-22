@@ -12,7 +12,7 @@ export const ProductListItem = ({
 }: ProductListItemProps) => {
 	return (
 		<li>
-			<Link href={`/product/${product.id}`}>
+			<Link href={`/product/${product?.id}`}>
 				<article>
 					<ProductListCover {...product.coverImage} />
 					<ProductBasicInfo product={product} />

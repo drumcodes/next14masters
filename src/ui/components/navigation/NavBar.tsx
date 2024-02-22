@@ -8,7 +8,7 @@ export const NavBar = ({
 	navbarLinks: NavBarLink[];
 }) => {
 	return (
-		<nav className="mb-5 flex h-12 justify-center">
+		<nav className="mb-5 flex justify-center">
 			<div className="mx-auto flex max-w-md items-center justify-center text-xl font-bold md:block">
 				<ul className="flex">
 					{navbarLinks.map((item) => {
@@ -29,7 +29,7 @@ export const NavBar = ({
 			</div>
 			<div className="flex">
 				<ActiveLink
-					href="/products"
+					href="#"
 					className="h-max px-5 py-5 text-black hover:bg-slate-50 hover:bg-opacity-50 hover:text-cyan-300"
 					activeClassName={"border-b-2 border-cyan-300"}
 				>

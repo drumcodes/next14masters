@@ -1,0 +1,15 @@
+query ProductGet($id: ID!) {
+	product(id: $id) {
+		id
+		name
+		categories {
+			name
+			description
+		}
+		price
+		description
+		images {
+			url
+		}
+	}
+}
