@@ -5,7 +5,7 @@ import { ProductDetailCover } from "@/ui/components/page/product/ProductDetailCo
 
 export const generateStaticParams = async () => {
 	const products = await getProductsList();
-	return products.map((product) => ({ productId: product.id }));
+	return products.data.map((product) => ({ productId: product.id }));
 };
 
 export const generateMetadata = async ({
@@ -13,16 +13,7 @@ export const generateMetadata = async ({
 }: {
 	params: { productId: string };
 }): Promise<Metadata> => {
-	const product = await getProductById(params.productId);
-	return {
-		title: `${product.name}`,
-		description: `${product.description}`,
-		openGraph: {
-			title: `${product.name}`,
-			description: `${product.description}`,
-			images: [product.coverImage.src],
-		},
-	};
+	return getProductById(params.productId);
 };
 
 export default async function SingleProductPage({
@@ -33,13 +24,13 @@ export default async function SingleProductPage({
 }) {
 	const product = await getProductById(params.productId);
 	return (
-		<>
-			<div className="flex">
-				<article className="mb-14 max-w-md text-xl">
-					<ProductDetailCover {...product.coverImage} />
-				</article>
-				<ProductDescription product={product} />
-			</div>
-		</>
+		<div className="flex">
+			<article className="mb-14 max-w-md text-xl">
+				{product.images[0] && (
+					<ProductDetailCover {...product.images[0]} />
+				)}
+			</article>
+			<ProductDescription product={product} />
+		</div>
 	);
 }
