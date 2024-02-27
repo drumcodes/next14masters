@@ -1,18 +1,22 @@
+import NextImage from "next/image";
+
 type ProductDetailCoverProps = {
-	src?: string;
+	url: string;
 	alt: string;
 };
 
 export const ProductDetailCover = ({
-	src,
+	url,
 	alt,
 }: ProductDetailCoverProps) => {
 	return (
 		<div className="aspect- h-100 overflow-hidden border">
-			<img
+			<NextImage
 				alt={alt}
-				src={src}
+				src={url}
 				className="h-ful h-fulll h-full w-full object-cover object-center"
+				width={400}
+				height={1000}
 			/>
 		</div>
 	);

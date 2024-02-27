@@ -10,4 +10,8 @@ export const navbarLinks: NavBarLink[] = [
 		label: "All",
 		href: "/products",
 	},
+	{
+		label: "Categories",
+		href: "/categories",
+	}
 ];

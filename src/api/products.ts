@@ -1,72 +1,31 @@
 import { notFound } from "next/navigation";
 import { executeGraphql } from "./utils";
-import { type ProductItem } from "@/ui/types";
 
 import {
 	ProductGetDocument,
+	type ProductListItemFragmentFragment,
 	ProductsGetListDocument,
 } from "@/gql/graphql";
 
-// const productResponseItemToProductItem = (
-// 	productResponse: Product,
-// ) => {
-// 	return {
-// 		id: productResponse.id,
-// 		name: productResponse.name,
-// 		price: productResponse.price,
-// 		category: productResponse.categories[0]?.name,
-// 		coverImage: {
-// 			src: productResponse.images[0]?.url,
-// 			alt: productResponse.name,
-// 		},
-// 		description: productResponse.description,
-// 	};
-// };
-
-export const getProductsList = async (): Promise<ProductItem[]> => {
+export const getProductsList = async () => {
 	const productsResponse = await executeGraphql(
 		ProductsGetListDocument,
 		{},
 	);
 
-	const products = productsResponse.products.data.map((product) => {
-		return {
-			description: product.description,
-			id: product.id,
-			coverImage: {
-				src: product.images[0]?.url,
-				alt: product.name,
-			},
-			name: product.name,
-			price: product.price,
-			slug: product.slug,
-			category: product.categories[0]?.name,
-		};
-	});
-
-	return products;
+	return productsResponse.products;
 };
 
 export const getProductById = async (
-	id: string,
-): Promise<ProductItem> => {
+	_id: ProductListItemFragmentFragment["id"],
+): Promise<ProductListItemFragmentFragment> => {
 	const productResponse = await executeGraphql(ProductGetDocument, {
-		id: id,
+		id: _id,
 	});
 
-	const product = productResponse.product;
-	if (!product) {
+	if (!productResponse.product) {
 		return notFound();
 	}
-	return {
-		description: product.description,
-		id: product.id,
-		coverImage: {
-			src: product.images[0]?.url,
-			alt: product.name,
-		},
-		name: product.name,
-		price: product.price,
-		category: product.categories[0]?.name,
-	};
+
+	return productResponse.product;
 };

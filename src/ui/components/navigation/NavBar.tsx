@@ -8,8 +8,8 @@ export const NavBar = ({
 	navbarLinks: NavBarLink[];
 }) => {
 	return (
-		<nav className="mb-5 flex justify-center">
-			<div className="mx-auto flex max-w-md items-center justify-center text-xl font-bold md:block">
+		<nav className="flex justify-center">
+			<div className="mx-auto flex max-w-md items-center justify-center text-sm font-bold md:block">
 				<ul className="flex">
 					{navbarLinks.map((item) => {
 						return (
@@ -18,6 +18,7 @@ export const NavBar = ({
 								href={item.href}
 								exact={item.exact}
 								activeClassName={"border-b-2 border-cyan-300"}
+								className={"min-w-fit"}
 							>
 								<li className=" px-5 py-5 hover:bg-slate-50 hover:bg-opacity-50 hover:text-cyan-300">
 									{item.label}
