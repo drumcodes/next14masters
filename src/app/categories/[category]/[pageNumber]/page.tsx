@@ -38,17 +38,3 @@ export default async function CategoryProductPage({
 		</>
 	);
 }
-
-
-// {
-// 	label: "T-shirts",
-// 	href: "/products/t-shirts",
-// },
-// {
-// 	label: "Hoodies",
-// 	href: "/products/hoodies",
-// },
-// {
-// 	label: "Accessories",
-// 	href: "/products/accessories",
-// },
