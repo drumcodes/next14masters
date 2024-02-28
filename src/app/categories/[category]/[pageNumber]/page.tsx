@@ -37,18 +37,18 @@ export default async function CategoryProductPage({
 	const allProducts = productsResponse.category.products;
 	const count = allProducts.length;
 
-	const start =
+	const pageStartProduct =
 		Number(params.pageNumber) * limitPerPage - limitPerPage;
 
-	const pageStartProduct =
-		start > count ? count - limitPerPage : start;
-	const pageEndProduct = start + limitPerPage;
+	const pageEndProduct = pageStartProduct + limitPerPage;
 
-	const pageProducts = allProducts.slice(start, pageEndProduct);
+	const pageProducts = allProducts.slice(
+		pageStartProduct,
+		pageEndProduct,
+	);
 
 	return (
 		<>
-			{`${params.pageNumber} ${count} ${pageStartProduct} ${pageEndProduct}`}
 			<ProductList products={pageProducts} />
 			<Pagination
 				href={`categories/${params.category}`}
