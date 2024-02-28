@@ -1,6 +1,7 @@
 "use client";
 
-import { navigate } from "@/app/actions";
+import { type Route } from "next";
+import { useRouter } from "next/navigation";
 
 type SearchBoxRedirectProps = {
 	redirectHref: string;
@@ -13,6 +14,8 @@ export const SearchBox = ({
 	searchDelay,
 	minQueryLength,
 }: SearchBoxRedirectProps) => {
+	const router = useRouter();
+
 	let timer: ReturnType<typeof setTimeout>;
 	const minLength = minQueryLength ?? 2;
 	const sleep = (ms: number): Promise<void> => {
@@ -22,12 +25,12 @@ export const SearchBox = ({
 	};
 
 	const shouldSearch = (query: string): boolean => {
-		return query ? query.length > minLength : false;
+		return query.length > minLength;
 	};
 	const handleSearch = async (query: string, searchDelay: number) => {
 		clearTimeout(timer);
 		await sleep(searchDelay);
-		await navigate(`${redirectHref}?query=${query}`);
+		router.push(`${redirectHref}?query=${query}` as Route);
 	};
 
 	return (
