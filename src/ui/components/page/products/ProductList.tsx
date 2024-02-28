@@ -1,7 +1,7 @@
 import { type ProductListItemFragmentFragment } from "@/gql/graphql";
 import { ProductListItem } from "@/ui/components/page/product/ProductListItem";
 
-export const ProductList = ({
+export const ProductList = async ({
 	products,
 }: {
 	products: ProductListItemFragmentFragment[];

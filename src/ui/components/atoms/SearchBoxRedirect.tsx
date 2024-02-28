@@ -14,7 +14,7 @@ export const SearchBoxRedirect = ({
 	minQueryLength,
 }: SearchBoxRedirectProps) => {
 	let timer: ReturnType<typeof setTimeout>;
-
+	const minLength = minQueryLength ?? 2;
 	const sleep = (ms: number): Promise<void> => {
 		return new Promise((resolve) => {
 			timer = setTimeout(resolve, ms);
@@ -22,8 +22,7 @@ export const SearchBoxRedirect = ({
 	};
 
 	const shouldSearch = (query: string): boolean => {
-		const min = minQueryLength ?? 1;
-		return query ? query.length > min : false;
+		return query ? query.length > minLength : false;
 	};
 	const handleSearch = async (query: string, searchDelay: number) => {
 		clearTimeout(timer);
@@ -36,8 +35,9 @@ export const SearchBoxRedirect = ({
 			<div className="ml-2 p-5">
 				<input
 					placeholder="Search products"
+					minLength={minLength}
 					type="text"
-					className="flex border pl-2 pr-2 placeholder:text-center placeholder:italic"
+					className="flex border pl-2 pr-2 placeholder:text-center placeholder:italic  invalid:bg-red-100"
 					min={2}
 					onChange={async (event) => {
 						if (shouldSearch(event.target.value)) {

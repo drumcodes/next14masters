@@ -33,7 +33,13 @@ export default async function SearchResultsPage({
 			<h1 className="mb-10 text-sm font-bold">
 				Search products: {searchParams.query}
 			</h1>
-			<Suspense>
+			<Suspense
+				fallback={
+					<div className="relative mr-3 h-5 w-full animate-bounce text-center">
+						Searching...
+					</div>
+				}
+			>
 				{searchParams.query ? (
 					isNotEmpty(productsResponse.products.data) &&
 					searchParams.query.length > 1 ? (

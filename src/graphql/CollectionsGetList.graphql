@@ -1,0 +1,16 @@
+query CollectionsGetList {
+	collections {
+		data {
+			name
+			id
+			slug
+			products {
+				name
+				images {
+					url
+					alt
+				}
+			}
+		}
+	}
+}

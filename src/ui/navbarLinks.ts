@@ -13,5 +13,9 @@ export const navbarLinks: NavBarLink[] = [
 	{
 		label: "Categories",
 		href: "/categories",
-	}
+	},
+	{
+		label: "Collections",
+		href: "/collections",
+	},
 ];

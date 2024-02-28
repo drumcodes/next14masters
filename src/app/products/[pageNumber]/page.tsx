@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { executeGraphql } from "@/api/utils";
 import { ProductsGetListDocument } from "@/gql/graphql";
 import { ProductList } from "@/ui/components/page/products/ProductList";
@@ -23,12 +24,10 @@ export default async function ProductsPage({
 	const allProducts = productsResponse.products.data;
 	const count = allProducts.length;
 
-	const start =
+	const pageStartProduct =
 		Number(params.pageNumber) * limitPerPage - limitPerPage;
 
-	const pageStartProduct =
-		start > count ? count - limitPerPage : start;
-	const pageEndProduct = start + limitPerPage;
+	const pageEndProduct = pageStartProduct + limitPerPage;
 
 	const pageProducts = allProducts.slice(
 		pageStartProduct,
@@ -37,13 +36,20 @@ export default async function ProductsPage({
 
 	return (
 		<>
-			{`${params.pageNumber} ${count} ${pageStartProduct} ${pageEndProduct}`}
-			<ProductList products={pageProducts} />
-			<Pagination
-				href="products"
-				count={count}
-				limit={limitPerPage}
-			/>
+			<Suspense
+				fallback={
+					<div className="relative mr-3 h-5 w-full animate-bounce text-center">
+						Loading products...
+					</div>
+				}
+			>
+				<ProductList products={pageProducts} />
+				<Pagination
+					href="products"
+					count={count}
+					limit={limitPerPage}
+				/>
+			</Suspense>
 		</>
 	);
 }

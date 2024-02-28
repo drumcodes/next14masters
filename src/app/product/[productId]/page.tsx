@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 import { getProductById, getProductsList } from "@/api/products";
 import { ProductDescription } from "@/ui/components/page/product/ProductDescription";
 import { ProductDetailCover } from "@/ui/components/page/product/ProductDetailCover";
+import { SuggestedProductsList } from "@/ui/components/page/products/SuggestedProductsList";
 
 export const generateStaticParams = async () => {
 	const products = await getProductsList();
@@ -24,13 +25,16 @@ export default async function SingleProductPage({
 }) {
 	const product = await getProductById(params.productId);
 	return (
-		<div className="flex">
-			<article className="mb-14 max-w-md text-xl">
-				{product.images[0] && (
-					<ProductDetailCover {...product.images[0]} />
-				)}
-			</article>
-			<ProductDescription product={product} />
-		</div>
+		<>
+			<div className="flex">
+				<article className="mb-14 max-w-md text-xl">
+					{product.images[0] && (
+						<ProductDetailCover {...product.images[0]} />
+					)}
+				</article>
+				<ProductDescription product={product} />
+			</div>
+			<SuggestedProductsList />
+		</>
 	);
 }
