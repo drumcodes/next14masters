@@ -1,8 +1,17 @@
-export default function HomePage() {
-	return (
-		<div className="mx-auto mb-5 max-w-md text-center text-4xl font-bold text-slate-600">
-			<h1>Hey stranger</h1>
-			<p>take a look around.</p>
-		</div>
+import { notFound } from "next/navigation";
+import { executeGraphql } from "@/api/utils";
+import { ProductsGetListDocument } from "@/gql/graphql";
+import { ProductList } from "@/ui/components/page/products/ProductList";
+
+export default async function HomePage() {
+	const productsResponse = await executeGraphql(
+		ProductsGetListDocument,
+		{},
 	);
+
+	if (!productsResponse.products.data) {
+		throw notFound();
+	}
+
+	return <ProductList products={productsResponse.products.data} />;
 }

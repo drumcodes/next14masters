@@ -8,7 +8,7 @@ type SearchBoxRedirectProps = {
 	minQueryLength?: number;
 };
 
-export const SearchBoxRedirect = ({
+export const SearchBox = ({
 	redirectHref,
 	searchDelay,
 	minQueryLength,
@@ -34,6 +34,7 @@ export const SearchBoxRedirect = ({
 		<div>
 			<div className="ml-2 p-5">
 				<input
+					role="searchbox"
 					placeholder="Search products"
 					minLength={minLength}
 					type="text"

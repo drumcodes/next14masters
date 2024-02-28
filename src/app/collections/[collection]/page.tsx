@@ -21,6 +21,10 @@ export default async function CollectionPage({
 
 	return (
 		<>
+			<title>{productsResponse.collection.name}</title>
+			<h1 className="mb-10 text-xl font-bold">
+				{productsResponse.collection.name}
+			</h1>
 			<ProductList products={productsResponse.collection?.products} />
 		</>
 	);

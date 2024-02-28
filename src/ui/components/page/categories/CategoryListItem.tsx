@@ -11,7 +11,9 @@ export const CategoryListItem = ({
 }: CategoryListItemProps) => {
 	return (
 		<li>
-			{category?.name}
+			<h1 className="mb-2 text-center text-md font-bold">
+				{category.name}
+			</h1>
 			<Link href={`/categories/${category?.slug}/1`}>
 				<article>
 					{category.products[0]?.images[0] && (
