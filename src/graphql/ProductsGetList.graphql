@@ -1,5 +1,5 @@
 query ProductsGetList {
-	products {
+	products(take: 50) {
 		data {
 			...ProductListItemFragment
 		}

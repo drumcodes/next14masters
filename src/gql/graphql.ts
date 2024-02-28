@@ -302,6 +302,13 @@ export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ProductsGetListQuery = { products: { data: Array<{ id: string, slug: string, name: string, price: number, description: string, images: Array<{ url: string, alt: string }>, categories: Array<{ name: string }> }> } };
 
+export type ProductsSearchQueryVariables = Exact<{
+  search: Scalars['String']['input'];
+}>;
+
+
+export type ProductsSearchQuery = { products: { data: Array<{ id: string, slug: string, name: string, price: number, description: string, images: Array<{ url: string, alt: string }>, categories: Array<{ name: string }> }> } };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -348,7 +355,7 @@ export const ProductListItemFragmentFragmentDoc = new TypedDocumentString(`
     `, {"fragmentName":"ProductListItemFragment"}) as unknown as TypedDocumentString<ProductListItemFragmentFragment, unknown>;
 export const ProductListFragmentFragmentDoc = new TypedDocumentString(`
     fragment ProductListFragment on Query {
-  products(take: 10) {
+  products {
     data {
       ...ProductListItemFragment
     }
@@ -432,7 +439,7 @@ export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
 }`) as unknown as TypedDocumentString<ProductsGetByCategorySlugQuery, ProductsGetByCategorySlugQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList {
-  products {
+  products(take: 50) {
     data {
       ...ProductListItemFragment
     }
@@ -452,3 +459,25 @@ export const ProductsGetListDocument = new TypedDocumentString(`
     name
   }
 }`) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
+export const ProductsSearchDocument = new TypedDocumentString(`
+    query ProductsSearch($search: String!) {
+  products(search: $search) {
+    data {
+      ...ProductListItemFragment
+    }
+  }
+}
+    fragment ProductListItemFragment on Product {
+  id
+  slug
+  name
+  price
+  description
+  images {
+    url
+    alt
+  }
+  categories {
+    name
+  }
+}`) as unknown as TypedDocumentString<ProductsSearchQuery, ProductsSearchQueryVariables>;

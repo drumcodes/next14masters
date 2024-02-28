@@ -1,5 +1,5 @@
 fragment ProductListFragment on Query {
-	products(take: 10) {
+	products {
 		data {
 			...ProductListItemFragment
 		}

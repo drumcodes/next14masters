@@ -1,4 +1,5 @@
 import { ShoppingCart } from "lucide-react";
+import { SearchBoxRedirect } from "../atoms/SearchBoxRedirect";
 import { ActiveLink } from "./ActiveLink";
 import { type NavBarLink } from "@/ui/types";
 
@@ -28,6 +29,7 @@ export const NavBar = ({
 					})}
 				</ul>
 			</div>
+			<SearchBoxRedirect searchDelay={500} redirectHref="/search" />
 			<div className="flex">
 				<ActiveLink
 					href="#"

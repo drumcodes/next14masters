@@ -1,40 +1,26 @@
 import { notFound } from "next/navigation";
 import { executeGraphql } from "@/api/utils";
-import { ProductsGetByCategorySlugDocument } from "@/gql/graphql";
+import { ProductsGetListDocument } from "@/gql/graphql";
 import { ProductList } from "@/ui/components/page/products/ProductList";
 import { Pagination } from "@/ui/components/navigation/Pagination";
 
-export const generateStaticParams = async ({
-	params,
-}: {
-	params: { category: string; pageNumber: string };
-}) => {
-	if (params.category === "t-shirts") {
-		return [{ pageNumber: "1" }, { pageNumber: "2" }];
-	} else {
-		return [{ pageNumber: "1" }];
-	}
-};
+const limitPerPage = 3;
 
-const limitPerPage = 2;
-
-export default async function CategoryProductPage({
+export default async function ProductsPage({
 	params,
 }: {
 	params: { category: string; pageNumber: string };
 }) {
 	const productsResponse = await executeGraphql(
-		ProductsGetByCategorySlugDocument,
-		{
-			slug: params.category,
-		},
+		ProductsGetListDocument,
+		{},
 	);
 
-	if (!productsResponse.category?.products) {
+	if (!productsResponse.products.data) {
 		throw notFound();
 	}
 
-	const allProducts = productsResponse.category.products;
+	const allProducts = productsResponse.products.data;
 	const count = allProducts.length;
 
 	const start =
@@ -44,14 +30,17 @@ export default async function CategoryProductPage({
 		start > count ? count - limitPerPage : start;
 	const pageEndProduct = start + limitPerPage;
 
-	const pageProducts = allProducts.slice(start, pageEndProduct);
+	const pageProducts = allProducts.slice(
+		pageStartProduct,
+		pageEndProduct,
+	);
 
 	return (
 		<>
 			{`${params.pageNumber} ${count} ${pageStartProduct} ${pageEndProduct}`}
 			<ProductList products={pageProducts} />
 			<Pagination
-				href={`categories/${params.category}`}
+				href="products"
 				count={count}
 				limit={limitPerPage}
 			/>
