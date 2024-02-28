@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 import { executeGraphql } from "@/api/utils";
 import {
 	ProductsSearchDocument,
