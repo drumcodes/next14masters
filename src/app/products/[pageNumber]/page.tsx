@@ -5,7 +5,7 @@ import { ProductsGetListDocument } from "@/gql/graphql";
 import { ProductList } from "@/ui/components/page/products/ProductList";
 import { Pagination } from "@/ui/components/navigation/Pagination";
 
-const limitPerPage = 3;
+const limitPerPage = 4;
 
 export default async function ProductsPage({
 	params,

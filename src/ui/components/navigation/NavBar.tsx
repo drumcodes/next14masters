@@ -1,5 +1,5 @@
 import { ShoppingCart } from "lucide-react";
-import { SearchBoxRedirect } from "../atoms/SearchBoxRedirect";
+import { SearchBox } from "../atoms/SearchBox";
 import { ActiveLink } from "./ActiveLink";
 import { type NavBarLink } from "@/ui/types";
 
@@ -29,15 +29,21 @@ export const NavBar = ({
 					})}
 				</ul>
 			</div>
-			<SearchBoxRedirect searchDelay={500} redirectHref="/search" />
+			<SearchBox searchDelay={500} redirectHref="/search" />
 			<div className="flex">
-				<ActiveLink
+				{/* <ActiveLink
 					href="#"
 					className="h-max px-5 py-5 text-black hover:bg-slate-50 hover:bg-opacity-50 hover:text-cyan-300"
 					activeClassName={"border-b-2 border-cyan-300"}
-				>
-					<ShoppingCart className="h-6 w-6 flex-shrink-0" size={48} />
-				</ActiveLink>
+				> */}
+				<div>
+					<ShoppingCart
+						className="p-5 text-black hover:bg-slate-50 hover:bg-opacity-50 hover:text-cyan-300"
+						size={64}
+					/>
+				</div>
+
+				{/* </ActiveLink> */}
 			</div>
 		</nav>
 	);

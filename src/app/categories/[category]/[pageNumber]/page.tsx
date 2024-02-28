@@ -49,6 +49,10 @@ export default async function CategoryProductPage({
 
 	return (
 		<>
+			<title>{productsResponse.category.name}</title>
+			<h1 className="mb-10 text-xl font-bold">
+				{productsResponse.category.name}
+			</h1>
 			<ProductList products={pageProducts} />
 			<Pagination
 				href={`categories/${params.category}`}

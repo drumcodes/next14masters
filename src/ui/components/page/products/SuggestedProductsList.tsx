@@ -11,8 +11,10 @@ export const SuggestedProductsList = async () => {
 	const endIndex = startIndex + sliceSize;
 
 	return (
-		<ProductList
-			products={products.data.slice(startIndex, endIndex)}
-		/>
+		<div data-testid="related-products">
+			<ProductList
+				products={products.data.slice(startIndex, endIndex)}
+			/>
+		</div>
 	);
 };

@@ -8,14 +8,22 @@ export const navbarLinks: NavBarLink[] = [
 	},
 	{
 		label: "All",
-		href: "/products",
-	},
-	{
-		label: "Categories",
-		href: "/categories",
+		href: "/products/",
 	},
 	{
 		label: "Collections",
-		href: "/collections",
+		href: "/collections/",
+	},
+	{
+		label: "Summer Vibes",
+		href: "/collections/summer-vibes",
+	},
+	{
+		label: "Categories",
+		href: "/categories/",
+	},
+	{
+		label: "T-Shirts",
+		href: "/categories/t-shirts/",
 	},
 ];
