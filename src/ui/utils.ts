@@ -4,3 +4,7 @@ export const formatPrice = (amount: number) => {
 		currency: "USD",
 	}).format(amount);
 };
+
+export function isNotEmpty<T>(array: T[]): boolean {
+	return Array.isArray(array) && array.length > 0;
+}
