@@ -2,14 +2,15 @@ import { ShoppingCart } from "lucide-react";
 import { SearchBox } from "../atoms/SearchBox";
 import { ActiveLink } from "./ActiveLink";
 import { navbarLinks } from "@/ui/navbarLinks";
+import { getOrCreateCart } from "@/api/cart";
 
 export async function NavBar() {
-	// const cart = await getOrCreateCart();
+	const cart = await getOrCreateCart();
 
-	// const quantity = cart.items.reduce(
-	// 	(acc, item) => acc + item.quantity,
-	// 	0,
-	// );
+	const quantity = cart.items.reduce(
+		(acc, item) => acc + item.quantity,
+		0,
+	);
 
 	return (
 		<nav className="flex justify-center">
@@ -44,7 +45,7 @@ export async function NavBar() {
 							aria-hidden={true}
 							size={64}
 						/>
-						{/* <span className="ml-2 font-medium">{quantity}</span> */}
+						<span className="ml-2 font-medium">{quantity}</span>
 						<span className="sr-only">
 							items in cart , view in bag
 						</span>

@@ -3,7 +3,6 @@ import { executeGraphql } from "./utils";
 import {
 	CartAddItemDocument,
 	CartCreateDocument,
-	CartGetByIdDocument,
 	ProductGetDocument,
 } from "@/gql/graphql";
 
@@ -12,6 +11,7 @@ export async function addProductToCart(
 	productId: string,
 	quantity: number,
 ) {
+	"use server";
 	const { product } = await executeGraphql({
 		query: ProductGetDocument,
 		variables: {
@@ -37,28 +37,12 @@ export async function addProductToCart(
 }
 
 export async function getOrCreateCart() {
-	// TODO
-	// Change mutation to createOrFind
+	"use server";
 	const cartId = cookies().get("cartId")?.value;
-	if (cartId) {
-		const { cart } = await executeGraphql({
-			query: CartGetByIdDocument,
-			variables: {
-				id: cartId,
-			},
-			next: {
-				tags: ["cart"],
-			},
-		});
-		if (cart) {
-			return cart;
-		}
-	}
-
 	const { cartFindOrCreate: cart } = await executeGraphql({
 		query: CartCreateDocument,
 		variables: {
-			id: cartId,
+			id: cartId ?? "",
 			input: {},
 		},
 	});
