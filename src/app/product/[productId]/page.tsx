@@ -1,12 +1,10 @@
 import { type Metadata } from "next";
-import { cookies } from "next/headers";
-import { revalidateTag } from "next/cache";
 import { getProductById, getProductsList } from "@/api/products";
 import { ProductDescription } from "@/ui/components/page/product/ProductDescription";
 import { ProductDetailCover } from "@/ui/components/page/product/ProductDetailCover";
 import { SuggestedProductsList } from "@/ui/components/page/products/SuggestedProductsList";
 import { AddToCartButton } from "@/ui/components/page/product/AddToCartButton";
-import { addProductToCart, getOrCreateCart } from "@/api/cart";
+import { addProductToCartAction } from "@/ui/actions";
 
 export const generateStaticParams = async () => {
 	const products = await getProductsList();
@@ -33,16 +31,9 @@ export default async function SingleProductPage({
 }) {
 	const product = await getProductById(params.productId);
 
-	async function addProductToCartAction() {
+	async function addProductToCart() {
 		"use server";
-		const cart = await getOrCreateCart();
-		cookies().set("cartId", cart.id, {
-			httpOnly: true,
-			sameSite: "lax",
-			secure: true,
-		});
-		await addProductToCart(cart.id, product.id, 1);
-		revalidateTag("cart");
+		await addProductToCartAction(params.productId);
 	}
 
 	return (
@@ -55,7 +46,7 @@ export default async function SingleProductPage({
 				</article>
 				<div className="ml-5 flex-row">
 					<ProductDescription product={product} />
-					<form action={addProductToCartAction}>
+					<form action={addProductToCart}>
 						<AddToCartButton />
 					</form>
 				</div>

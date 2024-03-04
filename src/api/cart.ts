@@ -61,7 +61,7 @@ export async function getOrCreateCart() {
 		query: CartCreateDocument,
 		variables: {
 			input: {
-				items: [{ productId: "1", quantity: 2 }],
+				items: [],
 			},
 		},
 	});
