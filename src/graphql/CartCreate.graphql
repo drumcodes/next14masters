@@ -1,5 +1,5 @@
-mutation CartCreate($input: MutationCartFindOrCreateInput!) {
-	cartFindOrCreate(input: $input) {
+mutation CartCreate($id: ID, $input: MutationCartFindOrCreateInput!) {
+	cartFindOrCreate(id: $id, input: $input) {
 		id
 		items {
 			product {

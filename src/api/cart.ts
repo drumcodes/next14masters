@@ -58,9 +58,8 @@ export async function getOrCreateCart() {
 	const { cartFindOrCreate: cart } = await executeGraphql({
 		query: CartCreateDocument,
 		variables: {
-			input: {
-				items: [],
-			},
+			id: cartId,
+			input: {},
 		},
 	});
 	if (!cart) {

@@ -291,6 +291,7 @@ export type CartChangeItemQuantityMutationVariables = Exact<{
 export type CartChangeItemQuantityMutation = { cartChangeItemQuantity: { id: string, items: Array<{ quantity: number, product: { name: string, price: number } }> } };
 
 export type CartCreateMutationVariables = Exact<{
+  id?: InputMaybe<Scalars['ID']['input']>;
   input: MutationCartFindOrCreateInput;
 }>;
 
@@ -457,8 +458,8 @@ export const CartChangeItemQuantityDocument = new TypedDocumentString(`
 }
     `) as unknown as TypedDocumentString<CartChangeItemQuantityMutation, CartChangeItemQuantityMutationVariables>;
 export const CartCreateDocument = new TypedDocumentString(`
-    mutation CartCreate($input: MutationCartFindOrCreateInput!) {
-  cartFindOrCreate(input: $input) {
+    mutation CartCreate($id: ID, $input: MutationCartFindOrCreateInput!) {
+  cartFindOrCreate(id: $id, input: $input) {
     id
     items {
       product {

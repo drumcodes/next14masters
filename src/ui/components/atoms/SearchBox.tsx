@@ -34,22 +34,20 @@ export const SearchBox = ({
 	};
 
 	return (
-		<div>
-			<div className="ml-2 p-5">
-				<input
-					role="searchbox"
-					placeholder="Search products"
-					minLength={minLength}
-					type="text"
-					className="flex border pl-2 pr-2 placeholder:text-center placeholder:italic  invalid:bg-red-100"
-					min={2}
-					onChange={async (event) => {
-						if (shouldSearch(event.target.value)) {
-							await handleSearch(event.target.value, searchDelay);
-						}
-					}}
-				/>
-			</div>
+		<div className="ml-2 p-2">
+			<input
+				role="searchbox"
+				placeholder="Search products"
+				minLength={minLength}
+				type="text"
+				className="flex h-10 border pl-2 pr-2 placeholder:text-center placeholder:italic  invalid:bg-red-100"
+				min={2}
+				onChange={async (event) => {
+					if (shouldSearch(event.target.value)) {
+						await handleSearch(event.target.value, searchDelay);
+					}
+				}}
+			/>
 		</div>
 	);
 };
