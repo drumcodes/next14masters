@@ -1,4 +1,3 @@
-import { type Metadata } from "next";
 import { getProductById } from "@/api/products";
 import { ProductDescription } from "@/ui/components/page/product/ProductDescription";
 import { ProductDetailCover } from "@/ui/components/page/product/ProductDetailCover";
@@ -11,17 +10,17 @@ import { addProductToCartAction } from "@/ui/actions";
 // 	return products.data.map((product) => ({ productId: product.id }));
 // };
 
-export const generateMetadata = async ({
-	params,
-}: {
-	params: { productId: string };
-}): Promise<Metadata> => {
-	const product = await getProductById(params.productId);
-	return {
-		title: product.name,
-		description: product.description,
-	};
-};
+// export const generateMetadata = async ({
+// 	params,
+// }: {
+// 	params: { productId: string };
+// }): Promise<Metadata> => {
+// 	const product = await getProductById(params.productId);
+// 	return {
+// 		title: product.name,
+// 		description: product.description,
+// 	};
+// };
 
 export default async function SingleProductPage({
 	params,
