@@ -25,9 +25,9 @@ export async function changeItemQuantity(
 export async function addProductToCartAction(productId: string) {
 	const cart = await getOrCreateCart();
 	cookies().set("cartId", cart.id, {
-		httpOnly: true,
-		sameSite: "lax",
-		secure: true,
+		// httpOnly: true,
+		// sameSite: "lax",
+		// secure: true,
 	});
 	await addProductToCart(cart.id, productId, 1).finally(() =>
 		revalidateTag("cart"),

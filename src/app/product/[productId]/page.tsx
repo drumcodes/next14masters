@@ -1,15 +1,15 @@
 import { type Metadata } from "next";
-import { getProductById, getProductsList } from "@/api/products";
+import { getProductById } from "@/api/products";
 import { ProductDescription } from "@/ui/components/page/product/ProductDescription";
 import { ProductDetailCover } from "@/ui/components/page/product/ProductDetailCover";
 import { SuggestedProductsList } from "@/ui/components/page/products/SuggestedProductsList";
 import { AddToCartButton } from "@/ui/components/page/product/AddToCartButton";
 import { addProductToCartAction } from "@/ui/actions";
 
-export const generateStaticParams = async () => {
-	const products = await getProductsList();
-	return products.data.map((product) => ({ productId: product.id }));
-};
+// export const generateStaticParams = async () => {
+// 	const products = await getProductsList();
+// 	return products.data.map((product) => ({ productId: product.id }));
+// };
 
 export const generateMetadata = async ({
 	params,
