@@ -8,12 +8,12 @@ export default async function CollectionPage({
 }: {
 	params: { collection: string };
 }) {
-	const productsResponse = await executeGraphql(
-		ProductsGetByCollectionSlugDocument,
-		{
+	const productsResponse = await executeGraphql({
+		query: ProductsGetByCollectionSlugDocument,
+		variables: {
 			slug: params.collection,
 		},
-	);
+	});
 
 	if (!productsResponse.collection?.products) {
 		throw notFound();

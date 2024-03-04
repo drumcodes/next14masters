@@ -12,10 +12,9 @@ export default async function ProductsPage({
 }: {
 	params: { category: string; pageNumber: string };
 }) {
-	const productsResponse = await executeGraphql(
-		ProductsGetListDocument,
-		{},
-	);
+	const productsResponse = await executeGraphql({
+		query: ProductsGetListDocument,
+	});
 
 	if (!productsResponse.products.data) {
 		throw notFound();

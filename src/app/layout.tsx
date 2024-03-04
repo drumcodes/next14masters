@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { NavBar } from "@/ui/components/navigation/NavBar";
 import { Footer } from "@/ui/components/navigation/Footer";
-import { navbarLinks } from "@/ui/navbarLinks";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +19,7 @@ export default function RootLayout({
 		<html lang="pl">
 			<body className={inter.className}>
 				<header className="sticky top-0 z-10 max-h-fit border-b border-gray-600 border-opacity-10 bg-opacity-90 backdrop-blur backdrop-opacity-95">
-					<NavBar navbarLinks={navbarLinks} />
+					<NavBar />
 				</header>
 				<section className="mx-auto h-full p-12 sm:max-w-2xl sm:py-16 md:max-w-4xl lg:max-w-screen-2xl">
 					{children}

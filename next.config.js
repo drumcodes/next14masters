@@ -7,7 +7,12 @@ const nextConfig = {
 		mdxRs: true,
 	},
 	images: {
-		domains: ["static-ourstore.hyperfunctor.com"],
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "static-ourstore.hyperfunctor.com",
+			},
+		],
 	},
 	redirects: async () => {
 		return [

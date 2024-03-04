@@ -4,17 +4,17 @@ import { ProductsGetByCategorySlugDocument } from "@/gql/graphql";
 import { ProductList } from "@/ui/components/page/products/ProductList";
 import { Pagination } from "@/ui/components/navigation/Pagination";
 
-export const generateStaticParams = async ({
-	params,
-}: {
-	params: { category: string; pageNumber: string };
-}) => {
-	if (params.category === "t-shirts") {
-		return [{ pageNumber: "1" }, { pageNumber: "2" }];
-	} else {
-		return [{ pageNumber: "1" }];
-	}
-};
+// export const generateStaticParams = async ({
+// 	params,
+// }: {
+// 	params: { category: string; pageNumber: string };
+// }) => {
+// 	if (params.category === "t-shirts") {
+// 		return [{ pageNumber: "1" }, { pageNumber: "2" }];
+// 	} else {
+// 		return [{ pageNumber: "1" }];
+// 	}
+// };
 
 const limitPerPage = 2;
 
@@ -23,12 +23,12 @@ export default async function CategoryProductPage({
 }: {
 	params: { category: string; pageNumber: string };
 }) {
-	const productsResponse = await executeGraphql(
-		ProductsGetByCategorySlugDocument,
-		{
+	const productsResponse = await executeGraphql({
+		query: ProductsGetByCategorySlugDocument,
+		variables: {
 			slug: params.category,
 		},
-	);
+	});
 
 	if (!productsResponse.category?.products) {
 		throw notFound();

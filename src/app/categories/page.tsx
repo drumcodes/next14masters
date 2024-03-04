@@ -4,10 +4,9 @@ import { CategoriesGetListDocument } from "@/gql/graphql";
 import { CategoryList } from "@/ui/components/page/categories/CategoryList";
 
 export default async function CategoriesPage() {
-	const categoriesResponse = await executeGraphql(
-		CategoriesGetListDocument,
-		{},
-	);
+	const categoriesResponse = await executeGraphql({
+		query: CategoriesGetListDocument,
+	});
 
 	if (!categoriesResponse.categories) {
 		throw notFound();

@@ -4,10 +4,9 @@ import { ProductsGetListDocument } from "@/gql/graphql";
 import { ProductList } from "@/ui/components/page/products/ProductList";
 
 export default async function HomePage() {
-	const productsResponse = await executeGraphql(
-		ProductsGetListDocument,
-		{},
-	);
+	const productsResponse = await executeGraphql({
+		query: ProductsGetListDocument,
+	});
 
 	if (!productsResponse.products.data) {
 		throw notFound();
