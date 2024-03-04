@@ -4,10 +4,9 @@ import { CollectionsGetListDocument } from "@/gql/graphql";
 import { CollectionList } from "@/ui/components/page/collections/CollectionList";
 
 export default async function CollectionsPage() {
-	const collectionsResponse = await executeGraphql(
-		CollectionsGetListDocument,
-		{},
-	);
+	const collectionsResponse = await executeGraphql({
+		query: CollectionsGetListDocument,
+	});
 
 	if (!collectionsResponse.collections) {
 		throw notFound();

@@ -8,11 +8,11 @@ export const navbarLinks: NavBarLink[] = [
 	},
 	{
 		label: "All",
-		href: "/products/",
+		href: "/products",
 	},
 	{
 		label: "Collections",
-		href: "/collections/",
+		href: "/collections",
 	},
 	{
 		label: "Summer Vibes",
@@ -20,10 +20,10 @@ export const navbarLinks: NavBarLink[] = [
 	},
 	{
 		label: "Categories",
-		href: "/categories/",
+		href: "/categories",
 	},
 	{
 		label: "T-Shirts",
-		href: "/categories/t-shirts/",
+		href: "/categories/t-shirts",
 	},
 ];

@@ -8,10 +8,9 @@ import {
 } from "@/gql/graphql";
 
 export const getProductsList = async () => {
-	const productsResponse = await executeGraphql(
-		ProductsGetListDocument,
-		{},
-	);
+	const productsResponse = await executeGraphql({
+		query: ProductsGetListDocument,
+	});
 
 	return productsResponse.products;
 };
@@ -19,8 +18,11 @@ export const getProductsList = async () => {
 export const getProductById = async (
 	_id: ProductListItemFragmentFragment["id"],
 ): Promise<ProductListItemFragmentFragment> => {
-	const productResponse = await executeGraphql(ProductGetDocument, {
-		id: _id,
+	const productResponse = await executeGraphql({
+		query: ProductGetDocument,
+		variables: {
+			id: _id,
+		},
 	});
 
 	if (!productResponse.product) {

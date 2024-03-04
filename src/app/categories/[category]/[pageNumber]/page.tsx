@@ -23,12 +23,12 @@ export default async function CategoryProductPage({
 }: {
 	params: { category: string; pageNumber: string };
 }) {
-	const productsResponse = await executeGraphql(
-		ProductsGetByCategorySlugDocument,
-		{
+	const productsResponse = await executeGraphql({
+		query: ProductsGetByCategorySlugDocument,
+		variables: {
 			slug: params.category,
 		},
-	);
+	});
 
 	if (!productsResponse.category?.products) {
 		throw notFound();

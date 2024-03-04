@@ -6,19 +6,16 @@ type ProductDescriptionProps = {
 };
 
 export const ProductDescription = ({
-	product: { price, description },
+	product: { name, price, description },
 }: ProductDescriptionProps) => {
 	return (
 		<>
-			<div className="mb-5 ml-20 mt-2 flex flex-col">
-				<div className="mb-10"></div>
-				<div className="flex flex-row">
-					<p className="mb-5 text-2xl text-gray-900">
-						{formatPrice(price / 100)}
-					</p>
-				</div>
-				<p className="mb-5 max-w-md text-black">Product details:</p>
+			<h1 className="text-2xl font-semibold text-gray-700">{name}</h1>
+			<div className="mb-5 mt-2 flex flex-col">
 				<p className="max-w-md text-gray-800">{description}</p>
+				<p className="mb-5 mt-10 text-2xl text-gray-900">
+					{formatPrice(price / 100)}
+				</p>
 			</div>
 		</>
 	);

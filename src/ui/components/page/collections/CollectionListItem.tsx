@@ -11,7 +11,9 @@ export const CollectionListItem = ({
 }: CollectionListItemProps) => {
 	return (
 		<li>
-			{collection?.name}
+			<h1 className="text-md mb-2 text-center font-bold">
+				{collection.name}
+			</h1>
 			<Link href={`/collections/${collection?.slug}`}>
 				<article>
 					{collection.products[0]?.images[0] && (

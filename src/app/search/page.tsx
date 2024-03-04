@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { executeGraphql } from "@/api/utils";
 import {
 	ProductsSearchDocument,
@@ -16,8 +17,11 @@ export default async function SearchResultsPage({
 	let productsResponse: ProductsSearchQuery;
 
 	try {
-		productsResponse = await executeGraphql(ProductsSearchDocument, {
-			search: searchParams.query,
+		productsResponse = await executeGraphql({
+			query: ProductsSearchDocument,
+			variables: {
+				search: searchParams.query,
+			},
 		});
 	} catch (error) {
 		return notResultsPage;
@@ -32,24 +36,24 @@ export default async function SearchResultsPage({
 			<h1 className="mb-10 text-sm font-bold">
 				Search products: {searchParams.query}
 			</h1>
-			{/* <Suspense
+			<Suspense
 				fallback={
 					<div className="relative mr-3 h-5 w-full animate-bounce text-center">
 						Searching...
 					</div>
 				}
-			> */}
-			{searchParams.query ? (
-				isNotEmpty(productsResponse.products.data) &&
-				searchParams.query.length > 1 ? (
-					<ProductList products={productsResponse.products.data} />
+			>
+				{searchParams.query ? (
+					isNotEmpty(productsResponse.products.data) &&
+					searchParams.query.length > 1 ? (
+						<ProductList products={productsResponse.products.data} />
+					) : (
+						<div>Not found</div>
+					)
 				) : (
 					<div>Not found</div>
-				)
-			) : (
-				<div>Not found</div>
-			)}
-			{/* </Suspense> */}
+				)}
+			</Suspense>
 		</>
 	);
 }

@@ -11,10 +11,15 @@ export const SuggestedProductsList = async () => {
 	const endIndex = startIndex + sliceSize;
 
 	return (
-		<div data-testid="related-products">
-			<ProductList
-				products={products.data.slice(startIndex, endIndex)}
-			/>
-		</div>
+		<>
+			<h1 className="text-md mb-2 font-bold">
+				{`You may also like:`}
+			</h1>
+			<div data-testid="related-products">
+				<ProductList
+					products={products.data.slice(startIndex, endIndex)}
+				/>
+			</div>
+		</>
 	);
 };

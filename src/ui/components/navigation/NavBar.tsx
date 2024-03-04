@@ -1,13 +1,17 @@
 import { ShoppingCart } from "lucide-react";
 import { SearchBox } from "../atoms/SearchBox";
 import { ActiveLink } from "./ActiveLink";
-import { type NavBarLink } from "@/ui/types";
+import { navbarLinks } from "@/ui/navbarLinks";
+import { getOrCreateCart } from "@/api/cart";
 
-export const NavBar = ({
-	navbarLinks: navbarLinks,
-}: {
-	navbarLinks: NavBarLink[];
-}) => {
+export async function NavBar() {
+	const cart = await getOrCreateCart();
+
+	const quantity = cart.items.reduce(
+		(acc, item) => acc + item.quantity,
+		0,
+	);
+
 	return (
 		<nav className="flex justify-center">
 			<div className="mx-auto flex max-w-md items-center justify-center text-sm font-bold md:block">
@@ -21,7 +25,7 @@ export const NavBar = ({
 								activeClassName={"border-b-2 border-cyan-300"}
 								className={"min-w-fit"}
 							>
-								<li className=" px-5 py-5 hover:bg-slate-50 hover:bg-opacity-50 hover:text-cyan-300">
+								<li className=" px-5 py-5 hover:bg-slate-100 hover:bg-opacity-50 hover:text-cyan-600">
 									{item.label}
 								</li>
 							</ActiveLink>
@@ -30,21 +34,24 @@ export const NavBar = ({
 				</ul>
 			</div>
 			<SearchBox searchDelay={500} redirectHref="/search" />
-			<div className="flex">
-				{/* <ActiveLink
-					href="#"
-					className="h-max px-5 py-5 text-black hover:bg-slate-50 hover:bg-opacity-50 hover:text-cyan-300"
-					activeClassName={"border-b-2 border-cyan-300"}
-				> */}
-				<div>
-					<ShoppingCart
-						className="p-5 text-black hover:bg-slate-50 hover:bg-opacity-50 hover:text-cyan-300"
-						size={64}
-					/>
-				</div>
-
-				{/* </ActiveLink> */}
+			<div className="flex-row items-center justify-center px-2 hover:bg-slate-100  hover:bg-opacity-50 hover:text-cyan-600 lg:ml-6 lg:justify-end">
+				<ActiveLink
+					href="/cart"
+					activeClassName={"border-b-2 bg-gray-300 border-cyan-50"}
+				>
+					<div className="mt-2 flex items-center p-2">
+						<ShoppingCart
+							className="h-6 w-6  text-black "
+							aria-hidden={true}
+							size={64}
+						/>
+						<span className="ml-2 font-medium">{quantity}</span>
+						<span className="sr-only">
+							items in cart , view in bag
+						</span>
+					</div>
+				</ActiveLink>
 			</div>
 		</nav>
 	);
-};
+}
