@@ -38,7 +38,7 @@ export default async function SingleProductPage({
 		cookies().set("cartId", cart.id, {
 			httpOnly: true,
 			sameSite: "lax",
-			// secure: true,
+			secure: true,
 		});
 		await addProductToCart(cart.id, params.productId, 1).finally(() =>
 			revalidateTag("cart"),

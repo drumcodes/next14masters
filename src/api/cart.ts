@@ -12,7 +12,6 @@ export async function addProductToCart(
 	productId: string,
 	quantity: number,
 ) {
-	"use server";
 	const { product } = await executeGraphql({
 		query: ProductGetDocument,
 		variables: {
@@ -38,7 +37,6 @@ export async function addProductToCart(
 }
 
 export async function getOrCreateCart() {
-	"use server";
 	// TODO
 	// Change mutation to createOrFind
 	const cartId = cookies().get("cartId")?.value;
