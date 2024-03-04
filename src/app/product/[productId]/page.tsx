@@ -5,7 +5,10 @@ import { ProductDescription } from "@/ui/components/page/product/ProductDescript
 import { ProductDetailCover } from "@/ui/components/page/product/ProductDetailCover";
 import { SuggestedProductsList } from "@/ui/components/page/products/SuggestedProductsList";
 import { AddToCartButton } from "@/ui/components/page/product/AddToCartButton";
-import { addProductToCart, getOrCreateCart } from "@/api/cart";
+import { addProductToCart, getOrCreateCart } from "@/ui/actions";
+
+// TODO 
+// commented out since it's currently dynamic 
 
 // export const generateStaticParams = async () => {
 // 	const products = await getProductsList();

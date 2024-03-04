@@ -2,7 +2,7 @@ import { ShoppingCart } from "lucide-react";
 import { SearchBox } from "../atoms/SearchBox";
 import { ActiveLink } from "./ActiveLink";
 import { navbarLinks } from "@/ui/navbarLinks";
-import { getOrCreateCart } from "@/api/cart";
+import { getOrCreateCart } from "@/ui/actions";
 
 export async function NavBar() {
 	const cart = await getOrCreateCart();

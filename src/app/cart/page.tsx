@@ -1,4 +1,4 @@
-import { getOrCreateCart } from "@/api/cart";
+import { getOrCreateCart } from "@/ui/actions";
 import { ChangeQuantity } from "@/ui/components/page/product/IncrementProductQuantity";
 import { formatPrice } from "@/ui/utils";
 
