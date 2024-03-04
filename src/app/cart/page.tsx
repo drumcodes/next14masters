@@ -1,9 +1,27 @@
-import { getOrCreateCart } from "@/ui/actions";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { ChangeQuantity } from "@/ui/components/page/product/IncrementProductQuantity";
 import { formatPrice } from "@/ui/utils";
+import { executeGraphql } from "@/api/utils";
+import { CartGetByIdDocument } from "@/gql/graphql";
 
 export default async function CartPage() {
-	const cart = await getOrCreateCart();
+	const cartId = cookies().get("cartId")?.value;
+
+	if (!cartId) {
+		redirect("/");
+	}
+
+	const { cart } = await executeGraphql({
+		query: CartGetByIdDocument,
+		variables: {
+			id: cartId,
+		},
+	});
+
+	if (!cart) {
+		redirect("/");
+	}
 
 	return (
 		<div>
