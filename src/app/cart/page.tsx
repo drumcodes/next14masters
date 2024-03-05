@@ -4,6 +4,7 @@ import { ChangeQuantity } from "@/ui/components/page/product/IncrementProductQua
 import { formatPrice } from "@/ui/utils";
 import { executeGraphql } from "@/api/utils";
 import { CartGetByIdDocument } from "@/gql/graphql";
+import { RemoveButton } from "@/ui/components/page/cart/RemoveProduct";
 
 export default async function CartPage() {
 	const cartId = cookies().get("cartId")?.value;
@@ -17,6 +18,9 @@ export default async function CartPage() {
 		variables: {
 			id: cartId,
 		},
+		next: {
+			tags: ["cart"],
+		},
 	});
 
 	if (!cart) {
@@ -24,37 +28,62 @@ export default async function CartPage() {
 	}
 
 	return (
-		<div>
-			<h1>Order #{cart.id} summary</h1>
-			<table className="table-fixed">
-				<thead>
-					<tr>
-						<th>Product</th>
-						<th>Quantity</th>
-						<th>Price</th>
-					</tr>
-				</thead>
-				<tbody>
-					{cart.items.map((item) => {
-						if (!item.product) {
-							return null;
-						}
-						return (
-							<tr key={item.product.id}>
-								<td>{item.product.name}</td>
-								<td>
-									<ChangeQuantity
-										itemId={cart.id}
-										productId={item.product.id}
-										quantity={item.quantity}
-									/>
-								</td>
-								<td>{formatPrice(item.product.price / 100)}</td>
-							</tr>
-						);
-					})}
-				</tbody>
-			</table>
+		<div className="flex flex-col">
+			<div className="-m-1.5 overflow-x-auto">
+				<div className="min-w-md inline-block p-1.5 align-middle">
+					<div className="overflow-hidden">
+						<table className="min-w-full divide-y divide-gray-100 text-left">
+							<thead>
+								<tr>
+									<th className="text-md min-w-60 pl-2">Product</th>
+									<th className="text-md min-w-48 pl-2">Quantity</th>
+									<th className="text-md min-w-24 pl-2">Price</th>
+								</tr>
+							</thead>
+							<tbody className="divide-y divide-gray-200 ">
+								{cart.items.map((item) => {
+									if (!item.product) {
+										return null;
+									}
+									return (
+										<tr
+											className="hover:bg-gray-100"
+											key={item.product.id}
+										>
+											<td className="border-r border-gray-200">
+												<div className="mr-5 p-2 pr-10">
+													{item.product.name}
+												</div>
+											</td>
+											<td className="border-r border-gray-200">
+												<div className="p-2 pr-10">
+													<ChangeQuantity
+														itemId={cart.id}
+														productId={item.product.id}
+														quantity={item.quantity}
+													/>
+												</div>
+											</td>
+
+											<td>
+												<div className="p-2 pr-2">
+													{formatPrice(item.product.price / 100)}
+												</div>
+											</td>
+											<td>
+												<RemoveButton
+													id={cart.id}
+													productId={item.product.id}
+												/>
+											</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }

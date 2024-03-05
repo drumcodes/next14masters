@@ -20,7 +20,7 @@ export function ChangeQuantity({
 		<form className="flex">
 			<span className="w-8 text-center">{optimisticQuantity}</span>
 			<button
-				className="h-6 w-6 border bg-slate-100"
+				className="h-6 w-6 border bg-slate-100 text-center hover:bg-cyan-300"
 				type="submit"
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity + 1);
