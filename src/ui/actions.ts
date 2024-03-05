@@ -7,6 +7,7 @@ import {
 	CartAddItemDocument,
 	CartChangeItemQuantityDocument,
 	CartCreateDocument,
+	CartRemoveItemDocument,
 	ProductGetDocument,
 } from "@/gql/graphql";
 
@@ -23,6 +24,7 @@ export async function changeItemQuantity(
 		variables: {
 			...props,
 		},
+		cache: "no-store",
 	}).finally(() => revalidateTag("cart"));
 }
 
@@ -34,6 +36,7 @@ export async function getOrCreateCart() {
 			id: cartId ?? "",
 			input: {},
 		},
+		cache: "no-store",
 	});
 	if (!cart) {
 		throw new Error("Cart does not exists or failed to create cart!");
@@ -52,6 +55,7 @@ export async function addProductToCart(
 		variables: {
 			id: productId,
 		},
+		cache: "no-store",
 	});
 	if (!product) {
 		throw new Error(`Product with id ${productId} not found`);
@@ -67,6 +71,15 @@ export async function addProductToCart(
 					quantity: quantity,
 				},
 			},
+			cache: "no-store",
 		},
+	});
+}
+
+export async function removeItem(id: string, productId: string) {
+	await executeGraphql({
+		query: CartRemoveItemDocument,
+		variables: { id: id, productId: productId },
+		cache: "no-store",
 	});
 }
