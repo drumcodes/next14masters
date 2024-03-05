@@ -28,6 +28,9 @@ export default async function CategoryProductPage({
 		variables: {
 			slug: params.category,
 		},
+		next: {
+			revalidate: 15,
+		},
 	});
 
 	if (!productsResponse.category?.products) {

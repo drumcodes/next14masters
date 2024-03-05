@@ -14,6 +14,9 @@ export default async function ProductsPage({
 }) {
 	const productsResponse = await executeGraphql({
 		query: ProductsGetListDocument,
+		next: {
+			revalidate: 15,
+		},
 	});
 
 	if (!productsResponse.products.data) {

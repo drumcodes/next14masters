@@ -22,6 +22,9 @@ export default async function SearchResultsPage({
 			variables: {
 				search: searchParams.query,
 			},
+			next: {
+				revalidate: 5,
+			},
 		});
 	} catch (error) {
 		return notResultsPage;

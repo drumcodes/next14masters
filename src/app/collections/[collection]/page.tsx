@@ -13,6 +13,9 @@ export default async function CollectionPage({
 		variables: {
 			slug: params.collection,
 		},
+		next: {
+			revalidate: 15,
+		},
 	});
 
 	if (!productsResponse.collection?.products) {
