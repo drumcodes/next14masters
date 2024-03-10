@@ -9,12 +9,10 @@ import { addProductToCart, getOrCreateCart } from "@/ui/actions";
 
 // TODO
 // commented out since it's currently dynamic
-
 // export const generateStaticParams = async () => {
 // 	const products = await getProductsList();
 // 	return products.data.map((product) => ({ productId: product.id }));
 // };
-
 // export const generateMetadata = async ({
 // 	params,
 // }: {
@@ -63,6 +61,7 @@ export default async function SingleProductPage({
 					</form>
 				</div>
 			</div>
+
 			<SuggestedProductsList />
 		</>
 	);
