@@ -7,8 +7,8 @@ import { SuggestedProductsList } from "@/ui/components/page/products/SuggestedPr
 import { AddToCartButton } from "@/ui/components/page/product/AddToCartButton";
 import { addProductToCart, getOrCreateCart } from "@/ui/actions";
 
-// TODO 
-// commented out since it's currently dynamic 
+// TODO
+// commented out since it's currently dynamic
 // export const generateStaticParams = async () => {
 // 	const products = await getProductsList();
 // 	return products.data.map((product) => ({ productId: product.id }));
@@ -28,8 +28,8 @@ import { addProductToCart, getOrCreateCart } from "@/ui/actions";
 export default async function SingleProductPage({
 	params,
 }: {
-	params: { productId: string; };
-	searchParams: { [key: string]: string | string[]; };
+	params: { productId: string };
+	searchParams: { [key: string]: string | string[] };
 }) {
 	const product = await getProductById(params.productId);
 
@@ -41,13 +41,13 @@ export default async function SingleProductPage({
 			sameSite: "lax",
 			secure: true,
 		});
-		await addProductToCart(cart.id, params.productId, 1).finally(() => revalidateTag("cart")
+		await addProductToCart(cart.id, params.productId, 1).finally(() =>
+			revalidateTag("cart"),
 		);
 	}
 
 	return (
 		<>
-			<og />
 			<div className="flex">
 				<article className="mb-14 max-w-md text-xl">
 					{product.images[0] && (
