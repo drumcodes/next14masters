@@ -21,6 +21,7 @@ export default async function CartPage() {
 		next: {
 			tags: ["cart"],
 		},
+		cache: "no-store",
 	});
 
 	if (!cart) {
@@ -84,6 +85,21 @@ export default async function CartPage() {
 					</div>
 				</div>
 			</div>
+			<form
+				action={async () => {
+					"use server";
+					redirect("/checkout");
+				}}
+				className="ml-auto"
+			>
+				<button
+					type="submit"
+					className="rounded-sm border bg-slate-100 px-8 py-2 shadow-sm transition-colors hover:bg-slate-200"
+					disabled={cart.items.length == 0}
+				>
+					Pay
+				</button>
+			</form>
 		</div>
 	);
 }
