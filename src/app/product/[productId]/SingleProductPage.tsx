@@ -1,42 +1,29 @@
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
-import { type Metadata } from "next";
 import { getProductById } from "@/api/products";
 import { ProductDescription } from "@/ui/components/page/product/ProductDescription";
 import { ProductDetailCover } from "@/ui/components/page/product/ProductDetailCover";
 import { SuggestedProductsList } from "@/ui/components/page/products/SuggestedProductsList";
 import { AddToCartButton } from "@/ui/components/page/product/AddToCartButton";
-import {
-	addProductToCart,
-	changeItemQuantity,
-	getOrCreateCart,
-} from "@/ui/actions";
-import { ProductReview } from "@/ui/components/page/product/ProductReview";
+import { addProductToCart, getOrCreateCart } from "@/ui/actions";
 
-export const generateMetadata = async ({
-	params,
-}: {
-	params: { productId: string };
-}): Promise<Metadata> => {
-	const product = await getProductById(params.productId);
-
-	return {
-		title: product.name,
-		description: product.description,
-		openGraph: {
-			description: product.description,
-			images: product.images.map((image) => {
-				return {
-					url: image.url,
-					width: 640,
-					height: 480,
-				};
-			}),
-			locale: "en_US",
-			type: "website",
-		},
-	};
-};
+// TODO
+// commented out since it's currently dynamic
+// export const generateStaticParams = async () => {
+// 	const products = await getProductsList();
+// 	return products.data.map((product) => ({ productId: product.id }));
+// };
+// export const generateMetadata = async ({
+// 	params,
+// }: {
+// 	params: { productId: string };
+// }): Promise<Metadata> => {
+// 	const product = await getProductById(params.productId);
+// 	return {
+// 		title: product.name,
+// 		description: product.description,
+// 	};
+// };
 
 export default async function SingleProductPage({
 	params,
@@ -54,20 +41,9 @@ export default async function SingleProductPage({
 			sameSite: "lax",
 			secure: true,
 		});
-		const productInCart = cart.items.filter(
-			(item) => item.product.id == params.productId,
-		)[0];
-
-		if (productInCart) {
-			await changeItemQuantity({
-				id: cart.id,
-				productId: params.productId,
-				quantity: productInCart.quantity + 1,
-			});
-		} else {
-			await addProductToCart(cart.id, params.productId, 1);
-		}
-		revalidateTag("cart");
+		await addProductToCart(cart.id, params.productId, 1).finally(() =>
+			revalidateTag("cart"),
+		);
 	}
 
 	return (
@@ -85,8 +61,8 @@ export default async function SingleProductPage({
 					</form>
 				</div>
 			</div>
+
 			<SuggestedProductsList />
-			<ProductReview />
 		</>
 	);
 }
