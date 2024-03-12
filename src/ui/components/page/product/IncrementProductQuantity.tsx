@@ -3,11 +3,11 @@ import { useOptimistic } from "react";
 import { changeItemQuantity } from "@/ui/actions";
 
 export function ChangeQuantity({
-	itemId,
+	cartId,
 	productId,
 	quantity,
 }: {
-	itemId: string;
+	cartId: string;
 	productId: string;
 	quantity: number;
 }) {
@@ -18,14 +18,14 @@ export function ChangeQuantity({
 
 	return (
 		<form className="flex">
-			<span className="w-8 text-center">{optimisticQuantity}</span>
 			<button
+				data-testid="increment"
 				className="h-6 w-6 border bg-slate-100 text-center hover:bg-cyan-300"
 				type="submit"
 				formAction={async () => {
 					setOptimisticQuantity(optimisticQuantity + 1);
 					await changeItemQuantity({
-						id: itemId,
+						id: cartId,
 						productId: productId,
 						quantity: optimisticQuantity + 1,
 					});
@@ -33,6 +33,24 @@ export function ChangeQuantity({
 			>
 				+
 			</button>
+			<button
+				data-testid="decrement"
+				className="h-6 w-6 border bg-slate-100 text-center hover:bg-cyan-300"
+				type="submit"
+				formAction={async () => {
+					setOptimisticQuantity(optimisticQuantity - 1);
+					await changeItemQuantity({
+						id: cartId,
+						productId: productId,
+						quantity: optimisticQuantity - 1,
+					});
+				}}
+			>
+				-
+			</button>
+			<span data-testid="quantity" className="w-8 text-center">
+				{optimisticQuantity}
+			</span>
 		</form>
 	);
 }
