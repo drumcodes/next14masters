@@ -59,13 +59,12 @@ export default async function CartPage() {
 											<td className="border-r border-gray-200">
 												<div className="p-2 pr-10">
 													<ChangeQuantity
-														itemId={cart.id}
+														cartId={cart.id}
 														productId={item.product.id}
 														quantity={item.quantity}
 													/>
 												</div>
 											</td>
-
 											<td>
 												<div className="p-2 pr-2">
 													{formatPrice(item.product.price / 100)}
