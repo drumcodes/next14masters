@@ -12,7 +12,7 @@ export function Pagination({
 	href: string;
 	count: number;
 	limit?: number;
-	searchParams: { sort?: string };
+	searchParams?: { sort?: string };
 }) {
 	const safeLimit = limit ?? defaultLimit;
 	const numberOfPages = Math.ceil(count / safeLimit);
