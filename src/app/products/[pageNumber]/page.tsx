@@ -1,29 +1,62 @@
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import SortProducts from "./SortProducts";
 import { executeGraphql } from "@/api/utils";
-import { ProductsGetListDocument } from "@/gql/graphql";
+import {
+	ProductsGetListDocument,
+	type ProductListItemFragmentFragment,
+} from "@/gql/graphql";
 import { ProductList } from "@/ui/components/page/products/ProductList";
 import { Pagination } from "@/ui/components/navigation/Pagination";
+import { getAverageProdctRating } from "@/ui/utils";
 
 const limitPerPage = 4;
 
 export default async function ProductsPage({
 	params,
+	searchParams,
 }: {
 	params: { category: string; pageNumber: string };
+	searchParams: { sort: string };
 }) {
 	const productsResponse = await executeGraphql({
 		query: ProductsGetListDocument,
 		next: {
-			revalidate: 15,
+			tags: ["products"],
 		},
+		cache: "no-store",
 	});
 
 	if (!productsResponse.products.data) {
 		throw notFound();
 	}
-
 	const allProducts = productsResponse.products.data;
+
+	const sorted =
+		searchParams.sort === "priceAsc"
+			? allProducts.sort((a, b) => a.price - b.price)
+			: searchParams.sort === "priceDesc"
+				? allProducts.sort((a, b) => b.price - a.price)
+				: searchParams.sort === "ratingAsc"
+					? allProducts.sort(
+							(
+								a: ProductListItemFragmentFragment,
+								b: ProductListItemFragmentFragment,
+							) =>
+								getAverageProdctRating(a.reviews) -
+								getAverageProdctRating(b.reviews),
+						)
+					: searchParams.sort === "ratingDesc"
+						? allProducts.sort(
+								(
+									a: ProductListItemFragmentFragment,
+									b: ProductListItemFragmentFragment,
+								) =>
+									getAverageProdctRating(b.reviews) -
+									getAverageProdctRating(a.reviews),
+							)
+						: allProducts;
+
 	const count = allProducts.length;
 
 	const pageStartProduct =
@@ -31,10 +64,7 @@ export default async function ProductsPage({
 
 	const pageEndProduct = pageStartProduct + limitPerPage;
 
-	const pageProducts = allProducts.slice(
-		pageStartProduct,
-		pageEndProduct,
-	);
+	const pageProducts = sorted.slice(pageStartProduct, pageEndProduct);
 
 	return (
 		<>
@@ -45,9 +75,11 @@ export default async function ProductsPage({
 					</div>
 				}
 			>
+				<SortProducts sort={searchParams.sort} />
 				<ProductList products={pageProducts} />
 				<Pagination
 					href="products"
+					searchParams={searchParams}
 					count={count}
 					limit={limitPerPage}
 				/>

@@ -83,3 +83,7 @@ export async function removeItem(id: string, productId: string) {
 		cache: "no-store",
 	});
 }
+
+export async function revalidateProducts() {
+	revalidateTag("products");
+}
