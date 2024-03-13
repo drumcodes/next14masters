@@ -12,13 +12,10 @@ export function Pagination({
 	href: string;
 	count: number;
 	limit?: number;
-	searchParams?: { sort?: string };
+	searchParams: { sort?: string };
 }) {
 	const safeLimit = limit ?? defaultLimit;
 	const numberOfPages = Math.ceil(count / safeLimit);
-	const params = searchParams?.sort
-		? `?sort=${searchParams.sort}`
-		: "";
 	return (
 		<div
 			aria-label="pagination"
@@ -27,7 +24,7 @@ export function Pagination({
 			{Array.from({ length: numberOfPages }, (_, index) => (
 				<ActiveLink
 					key={index}
-					href={`/${href}/${index + 1}}${params}`}
+					href={`/${href}/${index + 1}?${searchParams?.sort ? searchParams.sort : ""}`}
 				>
 					<p className="mx-1 py-2">{index + 1}</p>
 				</ActiveLink>
