@@ -1,4 +1,4 @@
-import { formatPrice } from "../../../utils";
+import { formatPrice, getAverageProdctRating } from "../../../utils";
 import { type ProductListItemFragmentFragment } from "@/gql/graphql";
 
 type ProductBasicInfoProps = {
@@ -6,7 +6,7 @@ type ProductBasicInfoProps = {
 };
 
 export const ProductBasicInfo = ({
-	product: { name, price },
+	product: { name, price, reviews },
 }: ProductBasicInfoProps) => {
 	return (
 		<>
@@ -15,6 +15,11 @@ export const ProductBasicInfo = ({
 					<h2 className="text-sm font-semibold text-gray-700">
 						{name}
 					</h2>
+				</div>
+				<div>
+					<p className="mb-5 text-sm font-medium text-gray-900">
+						{`Rating: ${getAverageProdctRating(reviews)}`}
+					</p>
 				</div>
 				<div>
 					<p className="mb-5 text-sm font-medium text-gray-900">

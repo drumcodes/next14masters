@@ -10,6 +10,9 @@ import {
 export const getProductsList = async () => {
 	const productsResponse = await executeGraphql({
 		query: ProductsGetListDocument,
+		next: {
+			tags: ["products"],
+		},
 	});
 
 	return productsResponse.products;
