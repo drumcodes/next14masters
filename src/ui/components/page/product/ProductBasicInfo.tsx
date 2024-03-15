@@ -17,12 +17,18 @@ export const ProductBasicInfo = ({
 					</h2>
 				</div>
 				<div>
-					<p className="mb-5 text-sm font-medium text-gray-900">
-						{`Rating: ${getAverageProdctRating(reviews)}`}
+					<p
+						data-testid="product-rating"
+						className="mb-5 text-sm font-medium text-gray-900"
+					>
+						{`${getAverageProdctRating(reviews)}`}
 					</p>
 				</div>
 				<div>
-					<p className="mb-5 text-sm font-medium text-gray-900">
+					<p
+						data-testid="product-price"
+						className="mb-5 text-sm font-medium text-gray-900"
+					>
 						{formatPrice(price / 100)}
 					</p>
 				</div>

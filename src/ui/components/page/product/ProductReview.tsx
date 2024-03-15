@@ -3,9 +3,9 @@ import { ProductRating } from "./ProductRating";
 export const ProductReview = () => {
 	return (
 		<div className="mx-auto max-w-md">
-			<h1 className="w-full text-center text-xl font-bold">
+			<h2 className="w-full text-center text-xl font-bold">
 				Review product:
-			</h1>
+			</h2>
 			<form
 				data-testid="add-review-form"
 				className="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md"

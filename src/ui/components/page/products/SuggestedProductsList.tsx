@@ -12,9 +12,9 @@ export const SuggestedProductsList = async () => {
 
 	return (
 		<>
-			<h1 className="text-md mb-2 font-bold">
+			<h2 className="text-md mb-2 font-bold">
 				{`You may also like:`}
-			</h1>
+			</h2>
 			<div data-testid="related-products">
 				<ProductList
 					products={products.data.slice(startIndex, endIndex)}

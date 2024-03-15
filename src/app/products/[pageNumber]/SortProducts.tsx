@@ -10,13 +10,34 @@ export default function SortProducts({ sort }: { sort?: string }) {
 		value: string;
 		label: string;
 		icon: string;
+		dataTestId?: string;
 	};
 
 	const sortOptions: SortOption[] = [
-		{ value: "priceAsc", label: "Price", icon: "\u25B2" },
-		{ value: "priceDesc", label: "Price", icon: "\u25BC" },
-		{ value: "ratingAsc", label: "Rating", icon: "\u25B2" },
-		{ value: "ratingDesc", label: "Rating", icon: "\u25BC" },
+		{
+			value: "priceDesc",
+			label: "Price",
+			icon: "\u25BC",
+			dataTestId: "sort-by-price",
+		},
+		{
+			value: "priceAsc",
+			label: "Price",
+			icon: "\u25B2",
+			dataTestId: "sort-by-price",
+		},
+		{
+			value: "ratingAsc",
+			label: "Rating",
+			icon: "\u25B2",
+			dataTestId: "sort-by-rating",
+		},
+		{
+			value: "ratingDesc",
+			label: "Rating",
+			icon: "\u25BC",
+			dataTestId: "sort-by-rating",
+		},
 	];
 
 	const [selectedOption, setSelectedOption] = useState<string>(
@@ -44,9 +65,13 @@ export default function SortProducts({ sort }: { sort?: string }) {
 				value={selectedOption}
 				onChange={handleSelectChange}
 			>
-				<option value="">---</option>
+				<option>---</option>
 				{sortOptions.map((option) => (
-					<option key={option.value} value={option.value}>
+					<option
+						data-testid={option.dataTestId}
+						key={option.value}
+						value={option.value}
+					>
 						{option.label} {`${option.icon}`}
 					</option>
 				))}
